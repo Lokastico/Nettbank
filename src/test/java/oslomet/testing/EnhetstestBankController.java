@@ -5,10 +5,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.web.bind.annotation.RequestBody;
 import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
+import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.ArrayList;
@@ -45,6 +47,11 @@ public class EnhetstestBankController {
     @DisplayName("Returnerer null hvis personnr er null, transaksjoner")
     public void testHentTransaksjoner_ikkeloggetinn() {
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        Konto resultat = bankController.hentTransaksjoner(String kontoNr, String fraDato, String tilDato);
+
+        assertNull(resultat);
     }
 
     @Test
@@ -56,6 +63,12 @@ public class EnhetstestBankController {
     @Test
     @DisplayName("Returnerer null hvis personnr er null, saldi")
     public void testHentSaldi_ikkeloggetinn() {
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        List<Konto> resultat = bankController.hentSaldi();
+
+        assertNull(resultat);
 
     }
 
@@ -69,18 +82,28 @@ public class EnhetstestBankController {
     @DisplayName("Returnerer null dersom personnr er null, betalingsregistrering")
     public void testRegistrerBetaling_ikkeloggetinn() {
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = bankController.registrerBetaling(@RequestBody Transaksjon betaling);
+
+        assertNull(resultat);
     }
 
     @Test
     @DisplayName("Henter betaling dersom personnr ikke er null")
-    public void testHentBetaling_loggetinn() {
+    public void testHentBetalinger_loggetinn() {
 
     }
 
     @Test
     @DisplayName("Returnerer null hvis personnr er null, hent betaling")
-    public void testHentBetaling_ikkeloggetinn() {
+    public void testHentBetalinger_ikkeloggetinn() {
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        List<Transaksjon> resultat = bankController.hentBetalinger();
+
+        assertNull(resultat);
     }
 
     @Test
@@ -93,6 +116,11 @@ public class EnhetstestBankController {
     @DisplayName("Returnerer null hvis personnr er null, utfør betaling")
     public void testUtforBetaling() {
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        List<Transaksjon> resultat = bankController.utforBetaling(int txID);
+
+        assertNull(resultat);
     }
 
     @Test
