@@ -50,7 +50,7 @@ public class EnhetstestBankController {
 
             when(repository.hentTransaksjoner(anyString())).thenReturn(transaksjon);
 
-            List<Konto> resultat = bankController.hentTransaksjoner('','','');
+            List<Konto> resultat = bankController.hentTransaksjoner(anyString());
 
             assertEquals(transaksjon, resultat);
 

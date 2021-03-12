@@ -1,4 +1,4 @@
-package oslomet.testing.API;
+package oslomet.testing;
 import org.testng.annotations.Test;
 import static org.junit.Assert.*;
 
