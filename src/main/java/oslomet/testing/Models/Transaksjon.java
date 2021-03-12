@@ -1,7 +1,6 @@
 package oslomet.testing.Models;
 
-public class Transaksjon
-{
+public class Transaksjon {
     private int txID;
     private String fraTilKontonummer;
     private double belop;
@@ -20,7 +19,7 @@ public class Transaksjon
         this.kontonummer = kontonummer;
     }
 
-    public Transaksjon() {
+    public Transaksjon(String txID, String s) {
     }
 
     public int getTxID() {
