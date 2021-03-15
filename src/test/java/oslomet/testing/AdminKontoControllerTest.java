@@ -2,11 +2,10 @@ package oslomet.testing.API;
 import org.testng.annotations.Test;
 import static org.junit.Assert.*;
 
-
-public class BankControllerTest {
+public class AdminKontoControllerTest {
 
     @Test
-    public void testBankController(){
+    public void testAdminKontoController(){
 
     }
 }
