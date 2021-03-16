@@ -40,19 +40,19 @@ public class EnhetstestBankController {
     @DisplayName("Henter transaksjoner dersom personnr ikke er null")
     public void testHentTransaksjoner_loggetinn() {
 
-        List<Konto> hentTrans = new ArrayList<>();
+       // List<Konto> hentTrans = new ArrayList<>();
 
         Konto enTransaksjon = new Konto("10101020123", "123456789", 1290, "Lønnskonto", "NOK", null);
 
-        hentTrans.add(enTransaksjon);
+       // hentTrans.add(enTransaksjon);
 
         when(sjekk.loggetInn()).thenReturn("10101020123");
 
-        when(repository.hentTransaksjoner(anyString())).thenReturn(hentTrans);
+        when(repository.hentTransaksjoner(anyString())).thenReturn(enTransaksjon);
 
-        List<Konto> resultat = bankController.hentTransaksjoner(anyString());
+        Konto resultat = bankController.hentTransaksjoner(anyString(), anyString(), anyString());
 
-        assertEquals(hentTrans, resultat);
+        assertEquals(resultat, enTransaksjon);
 
     }
 
@@ -62,7 +62,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        Konto resultat = bankController.hentTransaksjoner();
+        Konto resultat = bankController.hentTransaksjoner(anyString(), anyString(), anyString());
 
         assertNull(resultat);
     }
@@ -72,6 +72,7 @@ public class EnhetstestBankController {
     public void hentKonti_LoggetInn()  {
 
         List<Konto> konti = new ArrayList<>();
+
         Konto konto1 = new Konto("105010123456", "01010110523",
                 720, "Lønnskonto", "NOK", null);
         Konto konto2 = new Konto("105010123456", "12345678901",
