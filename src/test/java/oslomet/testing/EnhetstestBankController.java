@@ -137,13 +137,14 @@ public class EnhetstestBankController {
 
             Transaksjon enTransaksjon = new Transaksjon(45758, "12345678",
                     1250, "16.06.19", "overføring", "avventer", "12312322323");
+
             regbetaling.add(enTransaksjon);
 
             when(sjekk.loggetInn()).thenReturn("123456789");
 
             when(repository.registrerBetaling(Transaksjon betaling).thenReturn(regbetaling));
 
-        String resultat = bankController.registrerBetaling(Transaksjon betaling);
+        List<Transaksjon> resultat = bankController.registrerBetaling(Transaksjon betaling);
 
         assertEquals(regbetaling, resultat);
 
@@ -196,16 +197,17 @@ public class EnhetstestBankController {
         Transaksjon enTransaksjon = new Transaksjon(45758, "12345678",
                 1250, "16.06.19", "overføring", "avventer", "12312322323");
 
-        List<Transaksjon> utforbetaling = new ArrayList<>();
+        List<Transaksjon> utforbetaling = new ArrayList<Transaksjon>();
 
         utforbetaling.add(enTransaksjon);
 
-
         when(sjekk.loggetInn()).thenReturn("123456789");
 
-        when(repository.utforBetaling(45758)).thenReturn(utforbetaling);
+        when(repository.utforBetaling(45758)).thenReturn(String.valueOf(utforbetaling));
 
-        List<Transaksjon> resultat = repository.hentBetalinger(anyString());
+        when(repository.hentBetalinger(anyString())).thenReturn(utforbetaling);
+
+        List<Transaksjon> resultat = bankController.utforBetaling(45758);
 
         assertEquals(utforbetaling, resultat);
 
@@ -217,7 +219,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        List<Transaksjon> resultat = bankController.utforBetaling();
+        List<Transaksjon> resultat = bankController.utforBetaling(45758);
 
         assertNull(resultat);
     }
