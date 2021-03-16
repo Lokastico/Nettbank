@@ -105,13 +105,15 @@ public class EnhetstestBankController {
     public void testHentSaldi_loggetinn() {
 
         List<Konto> saldi = new ArrayList<>();
-        Konto konto1 = new Konto("123456789","0101010101",2500,
+
+        Konto hentSaldi = new Konto("123456789","0101010101",2500,
                 "Lønnskonto","NOK",null);
-        saldi.add(konto1);
+
+       saldi.add(konto1);
 
         when(sjekk.loggetInn()).thenReturn("123456789");
 
-        when(repository.hentSaldi(anyString()).thenReturn(saldi));
+        when(repository.hentSaldi(anyString())).thenReturn(saldi);
 
         List<Konto> resultat = bankController.hentSaldi();
 
