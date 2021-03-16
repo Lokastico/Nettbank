@@ -49,7 +49,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn("10101020123");
 
-        when(repository.hentTransaksjoner(anyString())).thenReturn(enTransaksjon);
+        when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(enTransaksjon);
 
         Konto resultat = bankController.hentTransaksjoner(anyString(), anyString(), anyString());
 
@@ -145,9 +145,9 @@ public class EnhetstestBankController {
 
             when(sjekk.loggetInn()).thenReturn("10101020123");
 
-            when(repository.registrerBetaling(Transaksjon betaling).thenReturn(enTransaksjon));
+            when(repository.registrerBetaling(Transaksjon, betaling).thenReturn(enTransaksjon));   //aner ikke hva jeg skal gjøre med det innenfor parantes her
 
-        Transaksjon resultat = bankController.registrerBetaling(Transaksjon betaling);
+        Transaksjon resultat = bankController.registrerBetaling(Transaksjon, betaling);  //ikke her heller
 
         assertEquals(enTransaksjon, resultat);
 
@@ -159,7 +159,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String resultat = bankController.registrerBetaling(Transaksjon betaling);
+        String resultat = bankController.registrerBetaling(Transaksjon, betaling);   //samme problem her
 
         assertNull(resultat);
     }
