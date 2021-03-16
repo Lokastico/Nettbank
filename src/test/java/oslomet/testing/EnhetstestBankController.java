@@ -42,7 +42,8 @@ public class EnhetstestBankController {
 
        // List<Konto> hentTrans = new ArrayList<>();
 
-        Konto enTransaksjon = new Konto("10101020123", "123456789", 1290, "Lønnskonto", "NOK", null);
+        Konto enTransaksjon = new Konto("10101020123", "123456789", 1290,
+                "Lønnskonto", "NOK", null);
 
        // hentTrans.add(enTransaksjon);
 
@@ -73,14 +74,14 @@ public class EnhetstestBankController {
 
         List<Konto> konti = new ArrayList<>();
 
-        Konto konto1 = new Konto("105010123456", "01010110523",
+        Konto konto1 = new Konto("10101020123", "01010110523",
                 720, "Lønnskonto", "NOK", null);
         Konto konto2 = new Konto("105010123456", "12345678901",
                 1000, "Lønnskonto", "NOK", null);
         konti.add(konto1);
         konti.add(konto2);
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
 
         when(repository.hentKonti(anyString())).thenReturn(konti);
 
@@ -106,12 +107,12 @@ public class EnhetstestBankController {
 
         List<Konto> saldi = new ArrayList<>();
 
-        Konto hentSaldi = new Konto("123456789","0101010101",2500,
+        Konto hentSaldi = new Konto("10101020123","0101010101",2500,
                 "Lønnskonto","NOK",null);
 
-       saldi.add(konto1);
+       saldi.add(hentSaldi);
 
-        when(sjekk.loggetInn()).thenReturn("123456789");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
 
         when(repository.hentSaldi(anyString())).thenReturn(saldi);
 
@@ -135,20 +136,20 @@ public class EnhetstestBankController {
     @DisplayName("Registrerer betaling dersom personnr ikke er null")
     public void testRegistrerBetaling_loggetinn() {
 
-        List<Transaksjon> regbetaling = new ArrayList<>();
+       // List<Transaksjon> regbetaling = new ArrayList<>();
 
             Transaksjon enTransaksjon = new Transaksjon(45758, "12345678",
                     1250, "16.06.19", "overføring", "avventer", "12312322323");
 
-            regbetaling.add(enTransaksjon);
+         //   regbetaling.add(enTransaksjon);
 
-            when(sjekk.loggetInn()).thenReturn("123456789");
+            when(sjekk.loggetInn()).thenReturn("10101020123");
 
-            when(repository.registrerBetaling(Transaksjon, betaling).thenReturn(regbetaling));
+            when(repository.registrerBetaling(Transaksjon betaling).thenReturn(enTransaksjon));
 
-        List<Transaksjon> resultat = bankController.registrerBetaling(Transaksjon betaling);
+        Transaksjon resultat = bankController.registrerBetaling(Transaksjon betaling);
 
-        assertEquals(regbetaling, resultat);
+        assertEquals(enTransaksjon, resultat);
 
     }
 
@@ -158,7 +159,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String resultat = bankController.registrerBetaling();
+        String resultat = bankController.registrerBetaling(Transaksjon betaling);
 
         assertNull(resultat);
     }
@@ -168,11 +169,11 @@ public class EnhetstestBankController {
     public void testHentBetalinger_loggetinn() {
 
         List<Transaksjon> hentbetaling = new ArrayList<>();
-        Konto konto1 = new Konto("123456789","0101010101",2500,
+        Konto konto1 = new Konto("10101020123","0101010101",2500,
                 "Lønnskonto","NOK",null);
         hentbetaling.add(konto1);
 
-        when(sjekk.loggetInn()).thenReturn("123456789");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
 
         when(repository.hentBetalinger(anyString())).thenReturn(hentbetaling);
 
@@ -203,7 +204,7 @@ public class EnhetstestBankController {
 
         utforbetaling.add(enTransaksjon);
 
-        when(sjekk.loggetInn()).thenReturn("123456789");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
 
         when(repository.utforBetaling(45758)).thenReturn(String.valueOf(utforbetaling));
 
@@ -230,11 +231,11 @@ public class EnhetstestBankController {
     @DisplayName("Henter kundeinfo dersom kunde er logget inn")
     public void hentKundeInfo_loggetInn() {
 
-        Kunde enKunde = new Kunde("01010110523",
+        Kunde enKunde = new Kunde("10101020123",
                 "Lene", "Jensen", "Askerveien 22", "3270",
                 "Asker", "22224444", "HeiHei");
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
 
         when(repository.hentKundeInfo(anyString())).thenReturn(enKunde);
 
