@@ -168,18 +168,20 @@ public class EnhetstestBankController {
     @DisplayName("Henter betaling dersom personnr ikke er null")
     public void testHentBetalinger_loggetinn() {
 
-        List<Transaksjon> hentbetaling = new ArrayList<>();
-        Konto konto1 = new Konto("10101020123","0101010101",2500,
-                "Lønnskonto","NOK",null);
-        hentbetaling.add(konto1);
+        List<Transaksjon> hentBetaling = new ArrayList<>();
+
+        Transaksjon betaling = new Transaksjon(45758, "12345678",
+                1250, "16.06.19", "overføring", "avventer", "12312322323");
+
+       hentBetaling.add(betaling);
 
         when(sjekk.loggetInn()).thenReturn("10101020123");
 
-        when(repository.hentBetalinger(anyString())).thenReturn(hentbetaling);
+        when(repository.hentBetalinger(anyString())).thenReturn(hentBetaling);
 
         List<Transaksjon> resultat = bankController.hentBetalinger();
 
-        assertEquals(hentbetaling, resultat);
+        assertEquals(hentBetaling, resultat);
     }
 
     @Test
