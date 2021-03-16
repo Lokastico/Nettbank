@@ -202,7 +202,7 @@ public class EnhetstestBankController {
         Transaksjon enTransaksjon = new Transaksjon(45758, "12345678",
                 1250, "16.06.19", "overføring", "avventer", "12312322323");
 
-        List<Transaksjon> utforbetaling = new ArrayList<Transaksjon>();
+        List<Transaksjon> utforbetaling = new ArrayList<>();
 
         utforbetaling.add(enTransaksjon);
 
