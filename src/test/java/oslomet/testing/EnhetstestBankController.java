@@ -144,7 +144,7 @@ public class EnhetstestBankController {
         when(sjekk.loggetInn()).thenReturn("10101020123");
 
         java.lang.String string = "OK";
-        when(repository.registrerBetaling(enTransaksjon)).thenReturn(string));
+        when(repository.registrerBetaling(enTransaksjon)).thenReturn(string);
 
         String resultat = bankController.registrerBetaling(enTransaksjon);
 
