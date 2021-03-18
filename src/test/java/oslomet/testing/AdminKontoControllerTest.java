@@ -54,7 +54,7 @@ public class AdminKontoControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Returnerer null hvis kunde ikke er logget inn.")
     public void testHentAlleKonti_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -65,7 +65,7 @@ public class AdminKontoControllerTest {
 
 
     @Test
-    @DisplayName("")
+    @DisplayName("Registrerer en konto dersom person er logget inn.")
     public void testRegistrerKonto_loggetInn(){
         Konto nyKonto = new Konto("10101020123", "01010110523", 720,
                 "Lønnskonto", "NOK" , null);
@@ -79,7 +79,7 @@ public class AdminKontoControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("returnerer null fordi person ikke er logget inn")
     public void testRegistrerKonto_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -89,7 +89,7 @@ public class AdminKontoControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Endrer en konto dersom person er logget inn")
     public void testEndreKonto_loggetInn(){
         Konto originalKonto = new Konto("10101020123", "01010110523", 720,
                 "Lønnskonto", "NOK" , null);
@@ -103,7 +103,7 @@ public class AdminKontoControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("returnerer null fordi person ikke er logget inn")
     public void testEndreKonto_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -113,7 +113,7 @@ public class AdminKontoControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("sletter konto om person er logget inn")
     public void testSlettKonto_loggetInn(){
         Konto slettetKonto = new Konto("10101020123", "01010110523", 720,
                 "Lønnskonto", "NOK" , null);
@@ -127,7 +127,7 @@ public class AdminKontoControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("returnerer null fordi person ikke er logget inn.")
     public void testSlettKonto_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
 
