@@ -19,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
 
 import org.junit.jupiter.api.DisplayName;
 
@@ -136,21 +138,19 @@ public class EnhetstestBankController {
     @DisplayName("Registrerer betaling dersom personnr ikke er null")
     public void testRegistrerBetaling_loggetinn() {
 
-       // List<Transaksjon> regbetaling = new ArrayList<>();
+        Transaksjon enTransaksjon = new Transaksjon(45758, "12345678",
+                1250, "16.06.19", "overføring", "avventer", "12312322323");
 
-            Transaksjon enTransaksjon = new Transaksjon(45758, "12345678",
-                    1250, "16.06.19", "overføring", "avventer", "12312322323");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
 
-         //   regbetaling.add(enTransaksjon);
+        java.lang.String string = "OK";
+        when(repository.registrerBetaling(enTransaksjon).thenReturn(string));
 
-            when(sjekk.loggetInn()).thenReturn("10101020123");
+        String resultat = bankController.registrerBetaling(enTransaksjon);
 
-            when(repository.registrerBetaling(Transaksjon, betaling).thenReturn(enTransaksjon));   //aner ikke hva jeg skal gjøre med det innenfor parantes her
-
-        Transaksjon resultat = bankController.registrerBetaling(Transaksjon, betaling);  //ikke her heller
-
-        assertEquals(enTransaksjon, resultat);
-
+        assertEquals(string, resultat);
+        verify(sjekk).loggetInn();
+        verify(repository).registrerBetaling(enTransaksjon);
     }
 
     @Test
@@ -159,9 +159,11 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String resultat = bankController.registrerBetaling(Transaksjon, betaling);   //samme problem her
+        String resultat = bankController.registrerBetaling(null);
 
         assertNull(resultat);
+        verify(sjekk).loggetInn();
+        verify(repository, times(0)).registrerBetaling(null);
     }
 
     @Test
