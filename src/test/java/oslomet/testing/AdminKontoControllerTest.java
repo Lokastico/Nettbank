@@ -90,4 +90,54 @@ public class AdminKontoControllerTest {
 
         assertEquals("ikke innlogget", resultat);
     }
+
+    @Test
+    @DisplayName("")
+    public void testEndreKonto_loggetInn(){
+        Konto originalKonto = new Konto("10101020123", "01010110523", 720,
+                "Lønnskonto", "NOK" , null);
+
+        when(sjekk.loggetInn()).thenReturn("10101020123");
+        when(repository.endreKonto(originalKonto)).thenReturn("OK");
+
+        String resultat = adminKontoController.endreKonto(originalKonto);
+
+        assertEquals("OK",resultat);
+    }
+
+    @Test
+    @DisplayName("")
+    public void testEndreKonto_ikkeLoggetInn(){
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = adminKontoController.endreKonto(null);
+
+        assertEquals("Ikke innlogget", resultat);
+    }
+
+    @Test
+    @DisplayName("")
+    public void testSlettKonto_loggetInn(){
+        Konto slettetKonto = new Konto("10101020123", "01010110523", 720,
+                "Lønnskonto", "NOK" , null);
+
+        when(sjekk.loggetInn()).thenReturn("10101020123");
+        when(repository.slettKonto("10101020123")).thenReturn("OK");
+
+        String resultat = adminKontoController.slettKonto("10101020123");
+
+        assertEquals("OK",resultat);
+    }
+
+    @Test
+    @DisplayName("")
+    public void testSlettKonto_ikkeLoggetInn(){
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = adminKontoController.slettKonto(null);
+
+        assertEquals("Ikke innlogget", resultat);
+    }
+
+
 }
