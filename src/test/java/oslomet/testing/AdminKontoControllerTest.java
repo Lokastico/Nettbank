@@ -1,6 +1,6 @@
 package oslomet.testing;
+
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.testng.annotations.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,8 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.AdminKontoController;
 import oslomet.testing.DAL.AdminRepository;
 import oslomet.testing.Models.Konto;
-import oslomet.testing.Models.Kunde;
-import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 
