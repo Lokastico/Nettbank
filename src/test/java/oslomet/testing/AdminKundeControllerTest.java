@@ -1,6 +1,6 @@
 package oslomet.testing;
-import org.testng.annotations.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.testng.annotations.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,10 +17,108 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AdminKundeControllerTest {
 
-    @Test
-    public void testAdminKundeController(){
+    @InjectMocks
+    private AdminKundeController adminKundeController;
 
+    @Mock
+    private AdminRepository repository;
+
+    @Mock
+    private Sikkerhet sjekk;
+
+
+    @Test
+    @DisplayName("Henter kunder dersom kunden er logget inn")
+    public void testHentAlleKunder_loggetInn(){
+        List <Kunde> kunder = new ArrayList<>() ;
+
+        Kunde enKunde1 = new Kunde("10101020123", "Per", "Hansen", "Markveien 1",
+                "0553", "Oslo", "45238845", "OsloMet123");
+
+        Kunde enKunde2 = new Kunde("10101020122", "Ola", "Johansen", "Osloveien 2",
+                "0551", "Oslo", "97129943", "AnvendtData99");
+        kunder.add(enKunde1);
+        kunder.add(enKunde2);
+
+        when (sjekk.loggetInn()).thenReturn("10101020123");
+        when (repository.hentAlleKunder()).thenReturn(kunder);
+
+        List <Kunde> resultat = adminKundeController.hentAlle();
+
+        assertEquals(kunder, resultat);
+
+    }
+
+    @Test
+    @DisplayName("")
+
+    public void testHentAlleKunder_ikkeLoggetInn(){
+        when(sjekk.loggetInn()).thenReturn(null);
+        List <Kunde> resultat = adminKundeController.hentAlle();
+        assertNull(resultat);
+    }
+
+    @Test
+    @DisplayName("")
+    public void testRegistrerKunde_loggetInn(){
+        Kunde nyKunde = new Kunde ("10101020123", "Per", "Hansen", "Markveien 1",
+                "0553", "Oslo", "45238845", "OsloMet123");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
+        when(repository.registrerKunde(nyKunde)).thenReturn("OK");
+
+        String resultat = adminKundeController.lagreKunde(nyKunde);
+        assertEquals("OK", resultat);
+    }
+
+    @Test
+    @DisplayName("")
+    public void testRegistrerKunde_ikkeLoggetInn(){
+        when(sjekk.loggetInn()).thenReturn(null);
+        String resultat = adminKundeController.lagreKunde(null);
+        assertEquals("Ikke innlogget", resultat);
+
+    }
+
+    @Test
+    @DisplayName("")
+    public void testEndreKunde_loggetInn(){
+        Kunde originalKunde = new Kunde("10101020123", "Per", "Hansen", "Markveien 1",
+                "0553", "Oslo", "45238845", "OsloMet123");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
+        when(repository.endreKundeInfo(originalKunde)).thenReturn("OK");
+
+        String resultat = adminKundeController.endre(originalKunde);
+        assertEquals("ok", resultat);
+    }
+    @Test
+    @DisplayName("")
+    public void testEndreKunde_ikkeLoggetInn() {
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = adminKundeController.endre(null);
+        assertEquals("Ikke innlogget", resultat);
+
+    }
+    @Test
+    @DisplayName("")
+    public void testSlettKunde_loggetInn (){
+        Kunde slettKunde = new Kunde("10101020123", "Per", "Hansen", "Markveien 1",
+                "0553", "Oslo", "45238845", "OsloMet123");
+        when(sjekk.loggetInn()).thenReturn("10101020123");
+        when(repository.slettKunde("10101020123")).thenReturn("OK");
+
+        String resultat =adminKundeController.slett("10101020123");
+        assertEquals("OK",resultat);
+    }
+
+    @Test
+    @DisplayName("")
+    public void testSlettKunde_ikkeLoggetInn(){
+        when(sjekk.loggetInn()).thenReturn(null);
+        String resultat =adminKundeController.slett(null);
+        assertEquals("Ikke innlogget", resultat);
     }
 }
