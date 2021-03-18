@@ -153,6 +153,7 @@ public class EnhetstestBankController {
         verify(repository).registrerBetaling(enTransaksjon);
     }
 
+
     @Test
     @DisplayName("Returnerer null dersom personnr er null, betalingsregistrering")
     public void testRegistrerBetaling_ikkeloggetinn() {
