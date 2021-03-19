@@ -28,7 +28,7 @@ public class AdminKundeControllerTest {
 
     @Mock
     private Sikkerhet sjekk;
-
+    @org.junit.Test
 
     @Test
     @DisplayName("Henter kunder dersom kunden er logget inn")
@@ -51,6 +51,7 @@ public class AdminKundeControllerTest {
         assertEquals(kunder, resultat);
 
     }
+    @org.junit.Test
 
     @Test
     @DisplayName("")
@@ -60,6 +61,7 @@ public class AdminKundeControllerTest {
         List <Kunde> resultat = adminKundeController.hentAlle();
         assertNull(resultat);
     }
+    @org.junit.Test
 
     @Test
     @DisplayName("")
@@ -72,6 +74,7 @@ public class AdminKundeControllerTest {
         String resultat = adminKundeController.lagreKunde(nyKunde);
         assertEquals("OK", resultat);
     }
+    @org.junit.Test
 
     @Test
     @DisplayName("")
@@ -81,6 +84,7 @@ public class AdminKundeControllerTest {
         assertEquals("Ikke innlogget", resultat);
 
     }
+    @org.junit.Test
 
     @Test
     @DisplayName("")
@@ -93,15 +97,17 @@ public class AdminKundeControllerTest {
         String resultat = adminKundeController.endre(originalKunde);
         assertEquals("ok", resultat);
     }
+    @org.junit.Test
     @Test
     @DisplayName("")
-    public void testEndreKunde_ikkeLoggetInn() {
+    public void testEndreKunde_ikkeInnlogget() {
         when(sjekk.loggetInn()).thenReturn(null);
 
         String resultat = adminKundeController.endre(null);
         assertEquals("Ikke innlogget", resultat);
 
     }
+    @org.junit.Test
     @Test
     @DisplayName("")
     public void testSlettKunde_loggetInn (){
@@ -114,9 +120,10 @@ public class AdminKundeControllerTest {
         assertEquals("OK",resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("")
-    public void testSlettKunde_ikkeLoggetInn(){
+    public void testSlettKunde_ikkeInnlogget(){
         when(sjekk.loggetInn()).thenReturn(null);
         String resultat =adminKundeController.slett(null);
         assertEquals("Ikke innlogget", resultat);
