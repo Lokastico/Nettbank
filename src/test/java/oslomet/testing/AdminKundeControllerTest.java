@@ -28,9 +28,9 @@ public class AdminKundeControllerTest {
 
     @Mock
     private Sikkerhet sjekk;
+
     @org.junit.Test
 
-    @Test
     @DisplayName("Henter kunder dersom kunden er logget inn")
     public void testHentAlleKunder_loggetInn(){
         List <Kunde> kunder = new ArrayList<>() ;
@@ -53,7 +53,7 @@ public class AdminKundeControllerTest {
     }
     @org.junit.Test
 
-    @Test
+
     @DisplayName("")
 
     public void testHentAlleKunder_ikkeLoggetInn(){
@@ -63,7 +63,7 @@ public class AdminKundeControllerTest {
     }
     @org.junit.Test
 
-    @Test
+
     @DisplayName("")
     public void testRegistrerKunde_loggetInn(){
         Kunde nyKunde = new Kunde ("10101020123", "Per", "Hansen", "Markveien 1",
@@ -76,17 +76,17 @@ public class AdminKundeControllerTest {
     }
     @org.junit.Test
 
-    @Test
+
     @DisplayName("")
     public void testRegistrerKunde_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
         String resultat = adminKundeController.lagreKunde(null);
-        assertEquals("Ikke innlogget", resultat);
+        assertEquals("Ikke logget inn", resultat);
 
     }
     @org.junit.Test
 
-    @Test
+
     @DisplayName("")
     public void testEndreKunde_loggetInn(){
         Kunde originalKunde = new Kunde("10101020123", "Per", "Hansen", "Markveien 1",
@@ -95,20 +95,20 @@ public class AdminKundeControllerTest {
         when(repository.endreKundeInfo(originalKunde)).thenReturn("OK");
 
         String resultat = adminKundeController.endre(originalKunde);
-        assertEquals("ok", resultat);
+        assertEquals("OK", resultat);
     }
     @org.junit.Test
-    @Test
+
     @DisplayName("")
     public void testEndreKunde_ikkeInnlogget() {
         when(sjekk.loggetInn()).thenReturn(null);
 
         String resultat = adminKundeController.endre(null);
-        assertEquals("Ikke innlogget", resultat);
+        assertEquals("Ikke logget inn", resultat);
 
     }
     @org.junit.Test
-    @Test
+
     @DisplayName("")
     public void testSlettKunde_loggetInn (){
         Kunde slettKunde = new Kunde("10101020123", "Per", "Hansen", "Markveien 1",
@@ -121,11 +121,11 @@ public class AdminKundeControllerTest {
     }
 
     @org.junit.Test
-    @Test
+
     @DisplayName("")
     public void testSlettKunde_ikkeInnlogget(){
         when(sjekk.loggetInn()).thenReturn(null);
         String resultat =adminKundeController.slett(null);
-        assertEquals("Ikke innlogget", resultat);
+        assertEquals("Ikke logget inn", resultat);
     }
 }
