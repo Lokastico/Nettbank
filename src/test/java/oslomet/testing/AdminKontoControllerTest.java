@@ -31,6 +31,7 @@ public class AdminKontoControllerTest {
     @Mock
     private Sikkerhet sjekk;
 
+    @org.junit.Test
     @Test
     @DisplayName("Henter alle konti dersom personnr ikke er null")
     public void testHentAlleKonti_loggetInn(){
@@ -53,6 +54,7 @@ public class AdminKontoControllerTest {
         assertEquals(konti, resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("Returnerer null hvis kunde ikke er logget inn.")
     public void testHentAlleKonti_ikkeLoggetInn(){
@@ -64,6 +66,7 @@ public class AdminKontoControllerTest {
     }
 
 
+    @org.junit.Test
     @Test
     @DisplayName("Registrerer en konto dersom person er logget inn.")
     public void testRegistrerKonto_loggetInn(){
@@ -71,13 +74,14 @@ public class AdminKontoControllerTest {
                 "Lønnskonto", "NOK" , null);
 
         when(sjekk.loggetInn()).thenReturn("10101020123");
-        when(repository.registrerKonto(nyKonto)).thenReturn("OK)");
+        when(repository.registrerKonto(nyKonto)).thenReturn("OK");
 
         String resultat = adminKontoController.registrerKonto(nyKonto);
 
         assertEquals("OK", resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("returnerer null fordi person ikke er logget inn")
     public void testRegistrerKonto_ikkeLoggetInn(){
@@ -85,9 +89,10 @@ public class AdminKontoControllerTest {
 
         String resultat = adminKontoController.registrerKonto(null);
 
-        assertEquals("ikke innlogget", resultat);
+        assertEquals("Ikke innlogget", resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("Endrer en konto dersom person er logget inn")
     public void testEndreKonto_loggetInn(){
@@ -102,6 +107,7 @@ public class AdminKontoControllerTest {
         assertEquals("OK",resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("returnerer null fordi person ikke er logget inn")
     public void testEndreKonto_ikkeLoggetInn(){
@@ -112,6 +118,7 @@ public class AdminKontoControllerTest {
         assertEquals("Ikke innlogget", resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("sletter konto om person er logget inn")
     public void testSlettKonto_loggetInn(){
@@ -126,6 +133,7 @@ public class AdminKontoControllerTest {
         assertEquals("OK",resultat);
     }
 
+    @org.junit.Test
     @Test
     @DisplayName("returnerer null fordi person ikke er logget inn.")
     public void testSlettKonto_ikkeLoggetInn(){
