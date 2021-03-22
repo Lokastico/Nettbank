@@ -9,7 +9,8 @@ public class Transaksjon {
     private String avventer;
     private String kontonummer;
 
-    public Transaksjon(int txID, String fraTilKontonummer, double belop, String dato, String melding, String avventer, String kontonummer) {
+    public Transaksjon(int txID, String fraTilKontonummer, double belop, String dato,
+                       String melding, String avventer, String kontonummer) {
         this.txID = txID;
         this.fraTilKontonummer = fraTilKontonummer;
         this.belop = belop;

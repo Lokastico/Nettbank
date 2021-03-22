@@ -41,13 +41,12 @@ public class EnhetstestBankController {
     @Test
     @DisplayName("Henter transaksjoner dersom personnr ikke er null")
     public void testHentTransaksjoner_loggetinn() {
-
-       // List<Konto> hentTrans = new ArrayList<>();
+        // List<Konto> hentTrans = new ArrayList<>();
 
         Konto enTransaksjon = new Konto("10101020123", "123456789", 1290,
                 "Lønnskonto", "NOK", null);
 
-       // hentTrans.add(enTransaksjon);
+        // hentTrans.add(enTransaksjon);
 
         when(sjekk.loggetInn()).thenReturn("10101020123");
 
