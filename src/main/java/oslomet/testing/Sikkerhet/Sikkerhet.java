@@ -57,11 +57,11 @@ public class Sikkerhet {
 
     public String loggetInn() {
        return (String) session.getAttribute("Innlogget");
-        //Linjen over gjør det samme som den utkommenterte koden under.
+        //Linjen over gjør det samme som den kommenterte koden under.
         //Det er ikke nødvendig med en if-setning.
 
 
-        /*if (session.getAttribute("Innlogget") != null){
+        /* if (session.getAttribute("Innlogget") != null){
             return (String) session.getAttribute("Innlogget");
         }
         return null;*/
