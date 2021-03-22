@@ -53,7 +53,7 @@ public class EnhetstestBankController {
 
         when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(enTransaksjon);
 
-        Konto resultat = bankController.hentTransaksjoner(anyString(), anyString(), anyString());
+        Konto resultat = bankController.hentTransaksjoner("123456789", "","");
 
         assertEquals(resultat, enTransaksjon);
 
@@ -65,7 +65,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        Konto resultat = bankController.hentTransaksjoner(anyString(), anyString(), anyString());
+        Konto resultat = bankController.hentTransaksjoner(null, null, null);
 
         assertNull(resultat);
     }
@@ -211,7 +211,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn("10101020123");
 
-        when(repository.utforBetaling(45758)).thenReturn(String.valueOf(utforbetaling));
+        when(repository.utforBetaling(45758)).thenReturn("OK");
 
         when(repository.hentBetalinger(anyString())).thenReturn(utforbetaling);
 
