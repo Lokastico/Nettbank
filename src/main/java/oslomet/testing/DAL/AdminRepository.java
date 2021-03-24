@@ -169,6 +169,7 @@ public class AdminRepository {
         }
         return "OK";
     }
+    /*
     public String initDB(DataSource dataSource){
         try{
             ClassPathResource skjema = new  ClassPathResource("schema.sql");
@@ -180,5 +181,5 @@ public class AdminRepository {
         catch(Exception e){
             return "Feil";
         }
-    }
+    }*/
 }

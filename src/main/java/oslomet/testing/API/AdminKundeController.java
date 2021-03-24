@@ -53,14 +53,14 @@ public class AdminKundeController {
         }
         return "Ikke logget inn";
     }
-
+    /*
     @Autowired
     private DataSource dataSource;
 
     @GetMapping("/initDB")
     public String initDB(){
         return repository.initDB(dataSource);
-    }
+    } */
 }
 
 
