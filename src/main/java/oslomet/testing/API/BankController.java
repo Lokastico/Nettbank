@@ -3,7 +3,6 @@ package oslomet.testing.API;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
@@ -11,7 +10,6 @@ import oslomet.testing.Models.Kunde;
 import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @RestController
@@ -98,11 +96,11 @@ public class BankController {
             }
         return null;
     }
-    @Autowired
+    /*@Autowired
     private DataSource dataSource;
 
     @GetMapping("/initDB")
     public String initDB(){
         return repository.initDB(dataSource);
-    }
+    }*/
 }

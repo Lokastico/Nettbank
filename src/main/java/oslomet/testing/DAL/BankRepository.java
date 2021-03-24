@@ -174,7 +174,7 @@ public class BankRepository {
         return "OK";
     }
 
-    public String initDB(DataSource dataSource){
+   /* public String initDB(DataSource dataSource){
         try{
             ClassPathResource skjema = new  ClassPathResource("schema.sql");
             ClassPathResource data = new ClassPathResource("data.sql");
@@ -185,5 +185,5 @@ public class BankRepository {
         catch(Exception e){
             return "Feil";
         }
-    }
+    }*/
 }

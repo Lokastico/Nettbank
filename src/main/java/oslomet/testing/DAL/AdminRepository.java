@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -169,7 +168,7 @@ public class AdminRepository {
         }
         return "OK";
     }
-    /*
+
     public String initDB(DataSource dataSource){
         try{
             ClassPathResource skjema = new  ClassPathResource("schema.sql");
@@ -181,5 +180,5 @@ public class AdminRepository {
         catch(Exception e){
             return "Feil";
         }
-    }*/
+    }
 }
