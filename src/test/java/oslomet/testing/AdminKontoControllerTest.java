@@ -146,12 +146,6 @@ public class AdminKontoControllerTest {
 
         assertEquals("Ikke innlogget", resultat);
     }
-    @Autowired
-    private DataSource dataSource;
 
-    @GetMapping("/initDB")
-    public String initDB(){
-        return repository.initDB(dataSource);
-    }
 
 }
