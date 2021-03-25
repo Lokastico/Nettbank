@@ -260,7 +260,7 @@ public class EnhetstestBankController {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("/Endrer kundeinformasjon dersom kunde er logget inn.")
     public void endre_loggetInn(){
         Kunde kunde1 = new Kunde("12345678901", "Knut", "Olsen", "Osloveien 1",
                 "1234", "Oslo", "87635623", "HalloHallo");
@@ -275,7 +275,7 @@ public class EnhetstestBankController {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("/returnerer null dersom personnummer er null og bruker forsøker å endre kundeinfo")
     public void endre_ikkeLoggetInn(){
         when(sjekk.loggetInn()).thenReturn(null);
 
